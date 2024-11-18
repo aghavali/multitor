@@ -1,0 +1,24 @@
+FROM node:16
+
+WORKDIR /home
+
+COPY . /home/
+
+USER root
+
+RUN apt-get update && \
+    apt-get install -y tor obfs4proxy haproxy privoxy netcat sudo && \
+    apt-get clean
+
+RUN npm install -g http-proxy-to-socks
+RUN dpkg -i polipo_1.1.1-8_amd64.deb
+
+RUN ./setup.sh install
+
+EXPOSE 16379
+
+RUN chmod +x ./entry.sh
+
+CMD tail -f /dev/null
+
+ENTRYPOINT [ "./entry.sh" ]

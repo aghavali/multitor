@@ -5,3 +5,5 @@ log/*
 # Config files.
 etc/*
 !/etc/.gitkeep
+polipo_1.1.1-8_amd64.deb
+.env

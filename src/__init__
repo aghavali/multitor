@@ -56,7 +56,7 @@ function __main__() {
   # We place here used commands at script runtime, as strings to anything
   # unnecessarily run.
   readonly commands=(basename dirname stat ps date grep cut sed awk chown \
-                     chmod mkdir pidof tor sudo nc kill \
+                     chmod mkdir pidof tor nc sudo kill \
                      haproxy polipo privoxy hpts)
 
   # If you intend to specify the full path to the command we do it like:
@@ -575,7 +575,7 @@ function __main__() {
         "${_FUNCTION_ID}()" \
         "socks_port_number: '$socks_port_number', control_port_number: '$control_port_number'"
 
-      CreateTorProcess "${user_name}" "${socks_port_number}" "${control_port_number}"
+      CreateTorProcess "${user_name}" "${socks_port_number}" "${control_port_number}" "/home/torrc"
 
       # For proxy:
       _proxy_ports+=("$socks_port_number")
